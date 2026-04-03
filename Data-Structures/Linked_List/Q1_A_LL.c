@@ -90,7 +90,28 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	if (ll == NULL)
+		return -1;
+
+	ListNode *cur = ll->head;
+	int index = 0;
+
+	// 삽입 위치 찾기
+	// cur->item이 item보다 작은 동안 계속 전진
+	while (cur != NULL && cur->item < item) {
+		cur = cur->next;
+		index++;
+	}
+
+	// 중복 검사
+	if (cur != NULL && cur->item == item)
+		return -1;
+
+	// index 위치에 삽입
+	if (insertNode(ll, index, item) == 0)
+		return index;
+
+	return -1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
