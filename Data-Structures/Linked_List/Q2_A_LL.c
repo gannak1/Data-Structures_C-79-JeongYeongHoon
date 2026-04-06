@@ -104,23 +104,17 @@ void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 	/* add your code here */
 	ListNode *head1 = ll1->head;
 	ListNode *head2 = ll2->head;
-	for (int i = 0; i < ll1->size; i++)
+
+	
+	for (int i = 0; (i < ll1->size) && (head2 != NULL); i++)
 	{
-		if (head2 != NULL)
-		{
 			ListNode *nextHead1 = head1->next;
-			ListNode *nextHead2 = head2->next;
 
 			head1->next = head2;
+			ll2->head = head2->next;
 			head2->next = nextHead1;
-			ll2->head = nextHead2;
 			head1 = nextHead1;
 			head2 = ll2->head;
-			if (nextHead2 != NULL)
-			{
-				printf("%d\n", nextHead2->item);
-			}
-		}
 	}
 	ll1->size += ll1->size;
 }
